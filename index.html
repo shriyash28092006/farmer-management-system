@@ -1289,3 +1289,469 @@ function resetProfitData(){
     document.getElementById(
         "finalProfit"
     ).innerText = "₹0";
+
+
+    updateDashboard();
+
+
+    alert(
+        "All profit data has been reset!"
+    );
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard(){
+
+    document.getElementById(
+        "farmerCount"
+    ).innerText = farmers.length;
+
+
+    document.getElementById(
+        "cropCount"
+    ).innerText = crops.length;
+
+
+    let totalExpense = 0;
+
+    let totalProfit = 0;
+
+
+    profitRecords.forEach(record => {
+
+        totalExpense +=
+            Number(record.expense) || 0;
+
+        totalProfit +=
+            Number(record.profit) || 0;
+
+    });
+
+
+    document.getElementById(
+        "expenseTotal"
+    ).innerText =
+        "₹" + Math.round(totalExpense);
+
+
+    document.getElementById(
+        "profitTotal"
+    ).innerText =
+        "₹" + Math.round(totalProfit);
+
+
+    displayReport();
+
+}
+
+
+/* =========================
+   FARMER PROFIT REPORT
+========================= */
+
+function displayReport(){
+
+    const table =
+        document.getElementById("reportTable");
+
+    table.innerHTML = "";
+
+
+    farmers.forEach(farmer => {
+
+        let income = 0;
+
+        let expense = 0;
+
+
+        profitRecords.forEach(record => {
+
+            if(
+                String(record.farmer)
+                .toLowerCase() ===
+                String(farmer.name)
+                .toLowerCase()
+            ){
+
+                income +=
+                    Number(record.income) || 0;
+
+                expense +=
+                    Number(record.expense) || 0;
+
+            }
+
+        });
+
+
+        const profit =
+            income - expense;
+
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>${farmer.name}</td>
+
+                <td>₹${Math.round(income)}</td>
+
+                <td>₹${Math.round(expense)}</td>
+
+                <td class="${
+                    profit >= 0
+                    ? "profit"
+                    : "loss"
+                }">
+
+                    ${
+                        profit >= 0
+                        ? "₹" + Math.round(profit)
+                        : "-₹" + Math.round(
+                            Math.abs(profit)
+                        )
+                    }
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    if(farmers.length === 0){
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="4"
+                    style="text-align:center"
+                >
+                    No farmers registered yet.
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+    "https://qyrklifhllqbjytewfci.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_J8FR9OuOoV07RV5xrte1cQ__NHHXlqO";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================
+   LOGIN
+========================= */
+
+async function loginUser(){
+
+    const email =
+        document.getElementById(
+            "authEmail"
+        ).value.trim();
+
+
+    const password =
+        document.getElementById(
+            "authPassword"
+        ).value;
+
+
+    const selectedRole =
+        document.getElementById(
+            "authRole"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "authMessage"
+        );
+
+
+    if(!email || !password){
+
+        message.textContent =
+            "Email आणि Password भरा.";
+
+        return;
+
+    }
+
+
+    message.textContent =
+        "Please wait...";
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email:email,
+
+            password:password
+
+        });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        const {
+            data:profile,
+            error:profileError
+        } =
+        await supabaseClient
+        .from("profiles")
+        .select("role")
+        .eq("id",data.user.id)
+        .single();
+
+
+        if(profileError){
+
+            throw new Error(
+                "Profile not found. Contact admin."
+            );
+
+        }
+
+
+        if(profile.role !== selectedRole){
+
+            await supabaseClient.auth.signOut();
+
+            throw new Error(
+                "Selected login role is incorrect."
+            );
+
+        }
+
+
+        document.getElementById(
+            "loginPage"
+        ).style.display = "none";
+
+
+        message.textContent = "";
+
+
+        alert(
+            profile.role === "admin"
+            ? "Admin Login Successful!"
+            : "Farmer Login Successful!"
+        );
+
+    }
+
+    catch(error){
+
+        message.textContent =
+            error.message;
+
+    }
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logoutUser(){
+
+    const {
+        error
+    } =
+    await supabaseClient.auth.signOut();
+
+
+    if(error){
+
+        alert(
+            "Logout failed: " +
+            error.message
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "loginPage"
+    ).style.display = "flex";
+
+
+    document.getElementById(
+        "authEmail"
+    ).value = "";
+
+
+    document.getElementById(
+        "authPassword"
+    ).value = "";
+
+
+    document.getElementById(
+        "authMessage"
+    ).textContent = "";
+
+
+    alert("Logout Successful!");
+
+}
+
+
+/* =========================
+   FARMER REGISTRATION
+========================= */
+
+async function registerUser(){
+
+    const name =
+        document.getElementById(
+            "authFullName"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "authEmail"
+        ).value.trim();
+
+
+    const password =
+        document.getElementById(
+            "authPassword"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "authMessage"
+        );
+
+
+    if(
+        !name ||
+        !email ||
+        !password
+    ){
+
+        message.textContent =
+            "सर्व माहिती भरा!";
+
+        return;
+
+    }
+
+
+    if(password.length < 6){
+
+        message.textContent =
+            "Password कमीत कमी 6 अक्षरांचा हवा.";
+
+        return;
+
+    }
+
+
+    message.textContent =
+        "Registration चालू आहे...";
+
+
+    try{
+
+        const {
+            error
+        } =
+        await supabaseClient.auth.signUp({
+
+            email:email,
+
+            password:password,
+
+            options:{
+
+                data:{
+                    full_name:name
+                }
+
+            }
+
+        });
+
+
+        if(error){
+
+            throw error;
+
+        }
+
+
+        message.textContent =
+            "Registration यशस्वी! Email confirmation आवश्यक असल्यास Email तपासा.";
+
+    }
+
+    catch(error){
+
+        message.textContent =
+            error.message;
+
+    }
+
+}
+
+
+/* =========================
+   START APPLICATION
+========================= */
+
+displayFarmers();
+
+displayCrops();
+
+updateDashboard();
+
+</script>
+
+</body>
+</html>
