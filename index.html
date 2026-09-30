@@ -390,8 +390,16 @@ placeholder="Expected Production (KG)">
 type="number"
 placeholder="Market Price ₹ / KG">
 
-<button class="add" onclick="addCrop()">
-Add Crop
+<button class="add" id="cropSubmitBtn" onclick="addCrop()">
+    Add Crop
+</button>
+
+<button type="button"
+        id="cancelEditBtn"
+        class="add"
+        style="display:none;background:#777;"
+        onclick="cancelCropEdit()">
+    Cancel Edit
 </button>
 
 </div>
@@ -632,36 +640,49 @@ updateDashboard();
 }
 
 
-/* ADD CROP */
+function addCrop() {
 
-function addCrop(){
+    let farmer = document.getElementById("cropFarmer").value.trim();
+    let name = document.getElementById("cropName").value.trim();
+    let date = document.getElementById("cropDate").value;
+    let production = document.getElementById("production").value;
+    let price = document.getElementById("price").value;
 
-let farmer =
-document.getElementById("cropFarmer").value.trim();
+    if (!farmer || !name || !date ||
+        production === "" || price === "") {
+        alert("Please fill all details");
+        return;
+    }
 
-let name =
-document.getElementById("cropName").value.trim();
+    let cropData = {
+        farmer: farmer,
+        name: name,
+        date: date,
+        production: Number(production),
+        price: Number(price)
+    };
 
-let date =
-document.getElementById("cropDate").value;
+    if (editingCropIndex !== -1) {
 
-let production =
-document.getElementById("production").value;
+        crops[editingCropIndex] = cropData;
 
-let price =
-document.getElementById("price").value;
+        alert("Crop updated successfully!");
 
+    } else {
 
-if(farmer=="" ||
-name=="" ||
-date=="" ||
-production=="" ||
-price==""){
+        crops.push(cropData);
 
-alert("Please fill all details");
+        alert("Crop added successfully!");
+    }
 
-return;
+    localStorage.setItem("crops", JSON.stringify(crops));
 
+    cancelCropEdit();
+
+    displayCrops();
+    updateDashboard();
+}
+    
 }
 
 
@@ -725,7 +746,14 @@ table.innerHTML += `
 <td>₹${crop.price}</td>
 
 <td>
+<button
+    style="background:#21743c;color:white;border:0;
+    padding:7px 10px;border-radius:5px;cursor:pointer;"
+    onclick="editCrop(${index})">
 
+    Edit
+
+</button>
 <button class="delete"
 onclick="deleteCrop(${index})">
 
@@ -742,7 +770,48 @@ Delete
 });
 
 }
+    
+/* EDIT CROP */
 
+let editingCropIndex = -1;
+
+function editCrop(index) {
+
+    let crop = crops[index];
+
+    document.getElementById("cropFarmer").value = crop.farmer;
+    document.getElementById("cropName").value = crop.name;
+    document.getElementById("cropDate").value = crop.date;
+    document.getElementById("production").value = crop.production;
+    document.getElementById("price").value = crop.price;
+
+    editingCropIndex = index;
+
+    document.getElementById("cropSubmitBtn").innerText = "Update Crop";
+    document.getElementById("cancelEditBtn").style.display = "block";
+
+    document.getElementById("crops").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+/* CANCEL EDIT */
+
+function cancelCropEdit() {
+
+    editingCropIndex = -1;
+
+    document.getElementById("cropFarmer").value = "";
+    document.getElementById("cropName").value = "";
+    document.getElementById("cropDate").value = "";
+    document.getElementById("production").value = "";
+    document.getElementById("price").value = "";
+
+    document.getElementById("cropSubmitBtn").innerText = "Add Crop";
+    document.getElementById("cancelEditBtn").style.display = "none";
+}
 
 /* DELETE CROP */
 
