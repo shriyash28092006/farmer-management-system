@@ -639,9 +639,6 @@ updateDashboard();
 
 }
 
-/* ADD / UPDATE CROP */
-
-let editingCropIndex = -1;
 
 function addCrop() {
 
@@ -651,13 +648,8 @@ function addCrop() {
     let production = document.getElementById("production").value;
     let price = document.getElementById("price").value;
 
-    if (
-        farmer === "" ||
-        name === "" ||
-        date === "" ||
-        production === "" ||
-        price === ""
-    ) {
+    if (!farmer || !name || !date ||
+        production === "" || price === "") {
         alert("Please fill all details");
         return;
     }
@@ -683,138 +675,49 @@ function addCrop() {
         alert("Crop added successfully!");
     }
 
-    localStorage.setItem(
-        "crops",
-        JSON.stringify(crops)
-    );
+    localStorage.setItem("crops", JSON.stringify(crops));
 
     cancelCropEdit();
 
     displayCrops();
     updateDashboard();
 }
-
-
-/* DISPLAY CROPS */
-
-function displayCrops(){
-
-    let table = document.getElementById("cropTable");
-
-    table.innerHTML = "";
-
-    crops.forEach((crop,index)=>{
-
-        table.innerHTML += `
-
-        <tr>
-
-        <td>${crop.farmer}</td>
-
-        <td>${crop.name}</td>
-
-        <td>${crop.date}</td>
-
-        <td>${crop.production} KG</td>
-
-        <td>₹${crop.price}</td>
-
-        <td>
-
-        <button
-            style="background:#21743c;color:white;border:0;
-            padding:7px 10px;border-radius:5px;cursor:pointer;"
-            onclick="editCrop(${index})">
-
-            Edit
-
-        </button>
-
-        <button class="delete"
-        onclick="deleteCrop(${index})">
-
-        Delete
-
-        </button>
-
-        </td>
-
-        </tr>
-
-        `;
-
-    });
-
+    
 }
 
 
-/* EDIT CROP */
+crops.push({
 
-function editCrop(index) {
+farmer:farmer,
+name:name,
+date:date,
+production:Number(production),
+price:Number(price)
 
-    let crop = crops[index];
-
-    document.getElementById("cropFarmer").value = crop.farmer;
-    document.getElementById("cropName").value = crop.name;
-    document.getElementById("cropDate").value = crop.date;
-    document.getElementById("production").value = crop.production;
-    document.getElementById("price").value = crop.price;
-
-    editingCropIndex = index;
-
-    document.getElementById("cropSubmitBtn").innerText =
-        "Update Crop";
-
-    document.getElementById("cancelEditBtn").style.display =
-        "block";
-
-    document.getElementById("crops").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-}
+});
 
 
-/* CANCEL EDIT */
-
-function cancelCropEdit() {
-
-    editingCropIndex = -1;
-
-    document.getElementById("cropFarmer").value = "";
-    document.getElementById("cropName").value = "";
-    document.getElementById("cropDate").value = "";
-    document.getElementById("production").value = "";
-    document.getElementById("price").value = "";
-
-    document.getElementById("cropSubmitBtn").innerText =
-        "Add Crop";
-
-    document.getElementById("cancelEditBtn").style.display =
-        "none";
-}
+localStorage.setItem(
+"crops",
+JSON.stringify(crops)
+);
 
 
-/* DELETE CROP */
+document.getElementById("cropFarmer").value="";
+document.getElementById("cropName").value="";
+document.getElementById("cropDate").value="";
+document.getElementById("production").value="";
+document.getElementById("price").value="";
 
-function deleteCrop(index){
 
-    if(!confirm("Delete this crop?")){
-        return;
-    }
+displayCrops();
 
-    crops.splice(index,1);
+updateDashboard();
 
-    localStorage.setItem(
-        "crops",
-        JSON.stringify(crops)
-    );
-
-    displayCrops();
-
-    updateDashboard();
+alert("Crop added successfully!");
 
 }
+
 
 /* DISPLAY CROPS */
 
