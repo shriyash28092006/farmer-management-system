@@ -13,10 +13,10 @@
     box-sizing:border-box;
     margin:0;
     padding:0;
+    font-family:Arial, sans-serif;
 }
 
 body{
-    font-family:Arial,sans-serif;
     background:#f1f8f4;
     color:#222;
 }
@@ -32,8 +32,12 @@ header h1{
     margin-bottom:6px;
 }
 
+header p{
+    font-size:15px;
+}
+
 nav{
-    background:#075f1c;
+    background:#075d1b;
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
@@ -42,18 +46,22 @@ nav{
 }
 
 nav button{
-    background:white;
-    color:#075f1c;
+    background:#0c8f2d;
+    color:white;
     border:none;
-    padding:10px 18px;
+    padding:11px 16px;
     border-radius:6px;
     cursor:pointer;
     font-weight:bold;
 }
 
+nav button:hover{
+    background:#16aa3d;
+}
+
 .container{
     width:95%;
-    max-width:1200px;
+    max-width:1300px;
     margin:20px auto;
 }
 
@@ -69,14 +77,14 @@ nav button{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
     gap:15px;
-    margin-bottom:20px;
+    margin:20px 0;
 }
 
 .card{
     background:white;
     padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.12);
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
     text-align:center;
 }
 
@@ -93,9 +101,9 @@ nav button{
 .form-box{
     background:white;
     padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
     margin-bottom:20px;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.12);
 }
 
 .form-box h2{
@@ -103,19 +111,35 @@ nav button{
     margin-bottom:15px;
 }
 
-input,select{
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+}
+
+input,
+select,
+textarea{
     width:100%;
     padding:11px;
-    margin:7px 0;
     border:1px solid #bbb;
     border-radius:6px;
+    margin-bottom:8px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border-color:#087f23;
 }
 
 button{
-    padding:10px 16px;
     border:none;
     border-radius:6px;
+    padding:10px 15px;
     cursor:pointer;
+    font-weight:bold;
 }
 
 .primary{
@@ -123,23 +147,28 @@ button{
     color:white;
 }
 
-.secondary{
-    background:#555;
-    color:white;
+.primary:hover{
+    background:#075d1b;
 }
 
-.warning{
-    background:#f0a500;
+.secondary{
+    background:#777;
     color:white;
 }
 
 .danger{
-    background:#d32f2f;
+    background:#d62828;
     color:white;
 }
 
-button:hover{
-    opacity:.9;
+.warning{
+    background:#e09f00;
+    color:white;
+}
+
+.info{
+    background:#1769aa;
+    color:white;
 }
 
 table{
@@ -149,7 +178,8 @@ table{
     margin-top:15px;
 }
 
-th,td{
+th,
+td{
     border:1px solid #ddd;
     padding:10px;
     text-align:center;
@@ -164,90 +194,53 @@ tr:nth-child(even){
     background:#f5f5f5;
 }
 
-.search-box input{
+.photo{
+    width:65px;
+    height:65px;
+    object-fit:cover;
+    border-radius:8px;
     border:2px solid #087f23;
 }
 
-.photo-preview{
+.preview{
     width:120px;
     height:120px;
     object-fit:cover;
     border-radius:10px;
-    border:2px solid #087f23;
     display:none;
     margin:10px 0;
-}
-
-.small-photo{
-    width:55px;
-    height:55px;
-    object-fit:cover;
-    border-radius:50%;
     border:2px solid #087f23;
 }
 
 .action-buttons{
     display:flex;
     justify-content:center;
-    gap:5px;
     flex-wrap:wrap;
+    gap:5px;
 }
 
-.report-buttons{
+.search-box{
     display:flex;
     gap:8px;
+    margin:15px 0;
     flex-wrap:wrap;
-    margin-top:10px;
 }
 
-.notification{
-    padding:12px;
-    margin:8px 0;
-    border-radius:6px;
-    background:#e8f5e9;
-    border-left:5px solid #087f23;
-}
-
-.login-page{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#e8f5e9;
-}
-
-.login-box{
-    width:95%;
-    max-width:420px;
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 4px 15px rgba(0,0,0,.2);
-}
-
-.login-box h1{
-    text-align:center;
-    color:#087f23;
-    margin-bottom:20px;
-}
-
-.login-box button{
-    width:100%;
-    margin-top:8px;
-}
-
-#app{
-    display:none;
+.search-box input{
+    flex:1;
+    min-width:220px;
+    margin:0;
 }
 
 .message{
-    margin-top:10px;
     padding:10px;
     border-radius:6px;
+    margin:10px 0;
+    display:none;
 }
 
 .success{
-    background:#d4edda;
+    background:#d8f3dc;
     color:#155724;
 }
 
@@ -256,12 +249,64 @@ tr:nth-child(even){
     color:#721c24;
 }
 
-footer{
+.auth-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.auth-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.auth-box h1{
+    color:#087f23;
     text-align:center;
-    background:#075f1c;
-    color:white;
-    padding:15px;
+    margin-bottom:10px;
+}
+
+.auth-box p{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.auth-box button{
+    width:100%;
+    margin-top:8px;
+}
+
+#app{
+    display:none;
+}
+
+.report-box{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.report-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:12px;
+}
+
+footer{
     margin-top:30px;
+    background:#075d1b;
+    color:white;
+    text-align:center;
+    padding:15px;
 }
 
 @media(max-width:700px){
@@ -270,60 +315,80 @@ footer{
         font-size:12px;
     }
 
-    th,td{
+    th,
+    td{
         padding:6px;
     }
 
-    .action-buttons button{
-        padding:6px 8px;
-        font-size:11px;
+    .container{
+        width:98%;
     }
+
+    nav button{
+        padding:8px 10px;
+        font-size:12px;
+    }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+<!-- ================= AUTH PAGE ================= -->
 
-<div id="loginPage" class="login-page">
+<div id="authPage" class="auth-page">
 
-<div class="login-box">
+<div class="auth-box">
 
-<h1>Farmer Management System</h1>
+<h1>🌾 Farmer Management System</h1>
+
+<p>Login to continue</p>
+
+<div id="authMessage" class="message"></div>
 
 <select id="loginRole">
-<option value="farmer">Farmer Login</option>
-<option value="admin">Admin Login</option>
+    <option value="farmer">Farmer Login</option>
+    <option value="admin">Admin Login</option>
 </select>
 
-<input id="fullName" placeholder="Full Name">
+<input
+    type="text"
+    id="fullName"
+    placeholder="Full Name"
+>
 
-<input id="email" type="email" placeholder="Email">
+<input
+    type="email"
+    id="email"
+    placeholder="Email"
+>
 
-<input id="password" type="password" placeholder="Password">
+<input
+    type="password"
+    id="password"
+    placeholder="Password"
+>
 
 <button class="primary" onclick="login()">
-Login
+    Login
 </button>
 
 <button class="secondary" onclick="registerFarmer()">
-Register as Farmer
+    Register as Farmer
 </button>
 
-<div id="authMessage"></div>
-
 </div>
 </div>
 
 
-<!-- ================= APP ================= -->
+<!-- ================= MAIN APP ================= -->
 
 <div id="app">
 
 <header>
 
-<h1>Farmer Management System</h1>
+<h1>🌾 Farmer Management System</h1>
 
 <p>Manage Farmers, Crops and Farm Profit</p>
 
@@ -349,7 +414,7 @@ Profit Calculator
 </button>
 
 <button onclick="showSection('notifications')">
-🔔 Notifications
+Notifications
 </button>
 
 <button onclick="logout()">
@@ -364,7 +429,7 @@ Logout
 
 <!-- ================= DASHBOARD ================= -->
 
-<div id="dashboard" class="section active">
+<section id="dashboard" class="section active">
 
 <div class="card-container">
 
@@ -380,55 +445,20 @@ Logout
 
 <div class="card">
 <h3>Total Expense</h3>
-<p>₹<span id="totalExpense">0</span></p>
+<p id="totalExpense">₹0</p>
 </div>
 
 <div class="card">
 <h3>Total Profit</h3>
-<p>₹<span id="totalProfit">0</span></p>
+<p id="totalProfit">₹0</p>
 </div>
 
 </div>
 
 
-<div class="form-box">
+<div class="report-box">
 
-<h2>Reports</h2>
-
-<div class="report-buttons">
-
-<button class="primary"
-onclick="downloadFarmerReport()">
-📥 Farmer Report
-</button>
-
-<button class="primary"
-onclick="downloadCropReport()">
-📥 Crop Report
-</button>
-
-<button class="primary"
-onclick="downloadProfitReport()">
-📥 Profit Report
-</button>
-
-<button class="primary"
-onclick="downloadAllReports()">
-📊 All Reports
-</button>
-
-<button class="secondary"
-onclick="printReport()">
-🖨️ Print Report
-</button>
-
-<button class="danger"
-onclick="resetProfitData()">
-Reset Profit Data
-</button>
-
-</div>
-
+<h2>Farmer-wise Expense & Profit</h2>
 
 <table>
 
@@ -449,12 +479,53 @@ Reset Profit Data
 
 </div>
 
+
+<div class="report-box">
+
+<h2>Reports</h2>
+
+<div class="report-buttons">
+
+<button class="primary"
+onclick="downloadFarmerReport()">
+Download Farmer Report
+</button>
+
+<button class="primary"
+onclick="downloadCropReport()">
+Download Crop Report
+</button>
+
+<button class="primary"
+onclick="downloadProfitReport()">
+Download Profit Report
+</button>
+
+<button class="info"
+onclick="downloadAllReports()">
+Download All Reports
+</button>
+
+<button class="secondary"
+onclick="printReport()">
+Print Report
+</button>
+
+<button class="danger"
+onclick="resetProfitData()">
+Reset Profit Data
+</button>
+
 </div>
+
+</div>
+
+</section>
 
 
 <!-- ================= FARMERS ================= -->
 
-<div id="farmers" class="section">
+<section id="farmers" class="section">
 
 <div class="form-box">
 
@@ -462,18 +533,64 @@ Reset Profit Data
 Add Farmer
 </h2>
 
-<input id="farmerName"
-placeholder="Farmer Name">
+<input type="hidden" id="editingFarmerIndex">
 
-<input id="village"
-placeholder="Village">
+<div class="form-grid">
 
-<input id="mobile"
-placeholder="Mobile Number">
+<div>
 
-<input id="land"
+<label>Farmer Name</label>
+
+<input
+type="text"
+id="farmerName"
+placeholder="Enter farmer name"
+>
+
+</div>
+
+
+<div>
+
+<label>Village</label>
+
+<input
+type="text"
+id="village"
+placeholder="Enter village"
+>
+
+</div>
+
+
+<div>
+
+<label>Mobile</label>
+
+<input
+type="tel"
+id="mobile"
+placeholder="Enter mobile number"
+>
+
+</div>
+
+
+<div>
+
+<label>Land Area (Acre)</label>
+
+<input
 type="number"
-placeholder="Land Area (Acre)">
+id="land"
+placeholder="Enter land area"
+step="0.01"
+>
+
+</div>
+
+
+<div>
 
 <label>Farmer Photo</label>
 
@@ -481,32 +598,32 @@ placeholder="Land Area (Acre)">
 type="file"
 id="farmerPhoto"
 accept="image/*"
-onchange="handlePhotoPreview(
-'farmerPhoto',
-'farmerPreview'
-)">
+onchange="handlePhotoPreview(this,'farmerPreview')"
+>
 
 <img
 id="farmerPreview"
-class="photo-preview">
+class="preview"
+>
+
+</div>
+
+</div>
+
 
 <button
 id="farmerSubmitBtn"
 class="primary"
 onclick="saveFarmer()">
-
 Add Farmer
-
 </button>
 
 <button
 id="cancelFarmerBtn"
 class="secondary"
 onclick="cancelFarmerEdit()"
-style="display:none">
-
-Cancel Edit
-
+style="display:none;">
+Cancel
 </button>
 
 </div>
@@ -516,26 +633,46 @@ Cancel Edit
 
 <h2>Registered Farmers</h2>
 
+
+<!-- FARMER SEARCH -->
+
 <div class="search-box">
 
 <input
+type="search"
 id="farmerSearch"
-placeholder="🔎 Search farmer..."
-oninput="displayFarmers()">
+placeholder="🔎 Enter farmer name"
+aria-label="Search farmer by name"
+>
+
+<button
+class="primary"
+onclick="searchFarmers()">
+🔍 Search
+</button>
+
+<button
+class="secondary"
+onclick="clearFarmerSearch()">
+Clear
+</button>
 
 </div>
+
 
 <table>
 
 <thead>
 
 <tr>
+
 <th>Photo</th>
 <th>Name</th>
 <th>Village</th>
 <th>Mobile</th>
 <th>Land</th>
-<th>Action</th>
+<th>Actions</th>
+
 </tr>
 
 </thead>
@@ -546,12 +683,12 @@ oninput="displayFarmers()">
 
 </div>
 
-</div>
+</section>
 
 
 <!-- ================= CROPS ================= -->
 
-<div id="crops" class="section">
+<section id="crops" class="section">
 
 <div class="form-box">
 
@@ -559,25 +696,71 @@ oninput="displayFarmers()">
 Add Crop
 </h2>
 
-<select id="cropFarmer">
-<option value="">
-Select Farmer
-</option>
-</select>
+<div class="form-grid">
 
-<input id="cropName"
-placeholder="Crop Name">
+<div>
 
-<input id="cropDate"
-type="date">
+<label>Farmer</label>
 
-<input id="production"
+<select id="cropFarmer"></select>
+
+</div>
+
+
+<div>
+
+<label>Crop Name</label>
+
+<input
+type="text"
+id="cropName"
+placeholder="Enter crop name"
+>
+
+</div>
+
+
+<div>
+
+<label>Date</label>
+
+<input
+type="date"
+id="cropDate"
+>
+
+</div>
+
+
+<div>
+
+<label>Production (KG)</label>
+
+<input
 type="number"
-placeholder="Production (KG)">
+id="production"
+placeholder="Enter production"
+step="0.01"
+>
 
-<input id="price"
+</div>
+
+
+<div>
+
+<label>Market Price</label>
+
+<input
 type="number"
-placeholder="Market Price">
+id="price"
+placeholder="Enter market price"
+step="0.01"
+>
+
+</div>
+
+
+<div>
 
 <label>Crop Photo</label>
 
@@ -585,32 +768,32 @@ placeholder="Market Price">
 type="file"
 id="cropPhoto"
 accept="image/*"
-onchange="handlePhotoPreview(
-'cropPhoto',
-'cropPreview'
-)">
+onchange="handlePhotoPreview(this,'cropPreview')"
+>
 
 <img
 id="cropPreview"
-class="photo-preview">
+class="preview"
+>
+
+</div>
+
+</div>
+
 
 <button
 id="cropSubmitBtn"
 class="primary"
 onclick="saveCrop()">
-
 Add Crop
-
 </button>
 
 <button
 id="cancelEditBtn"
 class="secondary"
 onclick="cancelCropEdit()"
-style="display:none">
-
+style="display:none;">
 Cancel Edit
-
 </button>
 
 </div>
@@ -618,29 +801,35 @@ Cancel Edit
 
 <div class="form-box">
 
-<h2>Crop Records</h2>
+<h2>Registered Crops</h2>
+
 
 <div class="search-box">
 
 <input
+type="search"
 id="cropSearch"
-placeholder="🔎 Search crop or farmer..."
-oninput="displayCrops()">
+placeholder="🔎 Search crop..."
+oninput="displayCrops()"
+>
 
 </div>
+
 
 <table>
 
 <thead>
 
 <tr>
+
 <th>Photo</th>
 <th>Farmer</th>
 <th>Crop</th>
 <th>Date</th>
 <th>Production</th>
-<th>Market Price</th>
-<th>Action</th>
+<th>Price</th>
+<th>Actions</th>
+
 </tr>
 
 </thead>
@@ -651,2262 +840,115 @@ oninput="displayCrops()">
 
 </div>
 
-</div>
+</section>
 
 
 <!-- ================= PROFIT ================= -->
 
-<div id="profit" class="section">
+<section id="profit" class="section">
 
 <div class="form-box">
 
 <h2>Profit Calculator</h2>
 
-<select id="profitFarmer">
-<option value="">Select Farmer</option>
-</select>
+<div class="form-grid">
 
-<input id="selling"
-type="number"
-placeholder="Selling / Income">
+<div>
 
-<input id="seed"
-type="number"
-placeholder="Seed Cost">
+<label>Farmer</label>
 
-<input id="fertilizer"
-type="number"
-placeholder="Fertilizer Cost">
+<select id="profitFarmer"></select>
 
-<input id="medicine"
-type="number"
-placeholder="Medicine Cost">
+</div>
 
-<input id="labour"
+
+<div>
+
+<label>Selling / Income</label>
+
+<input
 type="number"
-placeholder="Labour Cost">
+id="income"
+placeholder="Enter income"
+>
+
+</div>
+
+
+<div>
+
+<label>Seed Cost</label>
+
+<input
+type="number"
+id="seed"
+placeholder="Enter seed cost"
+>
+
+</div>
+
+
+<div>
+
+<label>Fertilizer Cost</label>
+
+<input
+type="number"
+id="fertilizer"
+placeholder="Enter fertilizer cost"
+>
+
+</div>
+
+
+<div>
+
+<label>Medicine Cost</label>
+
+<input
+type="number"
+id="medicine"
+placeholder="Enter medicine cost"
+>
+
+</div>
+
+
+<div>
+
+<label>Labour Cost</label>
+
+<input
+type="number"
+id="labour"
+placeholder="Enter labour cost"
+>
+
+</div>
+
+</div>
+
 
 <button
 class="primary"
 onclick="calculateProfit()">
-
 Calculate & Save Profit
-
 </button>
 
-<div id="profitResult"></div>
-
+<div id="profitResult"
+class="message success">
 </div>
 
 </div>
 
-
-<!-- ================= NOTIFICATIONS ================= -->
-
-<div id="notifications" class="section">
 
 <div class="form-box">
 
-<h2>🔔 Notifications</h2>
-
-<button
-class="danger"
-onclick="clearNotifications()">
-
-Clear Notifications
-
-</button>
-
-<div id="notificationList"></div>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<footer>
-
-BCA Project | Farmer Management System
-
-</footer>
-
-</div>
-
-
-<script>
-
-/* =====================================================
-   SUPABASE
-===================================================== */
-
-const SUPABASE_URL =
-"https://qyrklifhllqbjytewfci.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_J8FR9OuOoV07RV5xrte1cQ__NHHXlqO";
-
-const supabaseClient =
-supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let currentUser = null;
-let currentProfile = null;
-let currentRole = null;
-
-let farmers =
-JSON.parse(localStorage.getItem("farmers")) || [];
-
-let crops =
-JSON.parse(localStorage.getItem("crops")) || [];
-
-let profitRecords =
-JSON.parse(localStorage.getItem("profitRecords")) || [];
-
-let notifications =
-JSON.parse(localStorage.getItem("notifications")) || [];
-
-let editingFarmerIndex = -1;
-let editingCropIndex = -1;
-
-
-/* =====================================================
-   SAVE DATA
-===================================================== */
-
-function saveData(){
-
-localStorage.setItem(
-"farmers",
-JSON.stringify(farmers)
-);
-
-localStorage.setItem(
-"crops",
-JSON.stringify(crops)
-);
-
-localStorage.setItem(
-"profitRecords",
-JSON.stringify(profitRecords)
-);
-
-localStorage.setItem(
-"notifications",
-JSON.stringify(notifications)
-);
-
-}
-
-
-/* =====================================================
-   HTML SECURITY
-===================================================== */
-
-function escapeHTML(text){
-
-if(text === null ||
-text === undefined)
-return "";
-
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   PHOTO COMPRESS + SAVE
-===================================================== */
-
-function compressImage(file){
-
-return new Promise((resolve,reject)=>{
-
-if(!file){
-
-resolve("");
-
-return;
-
-}
-
-
-const reader =
-new FileReader();
-
-
-reader.onload=function(e){
-
-const img =
-new Image();
-
-
-img.onload=function(){
-
-const canvas =
-document.createElement("canvas");
-
-const maxSize = 700;
-
-let width =
-img.width;
-
-let height =
-img.height;
-
-
-if(width > height){
-
-if(width > maxSize){
-
-height =
-height * maxSize / width;
-
-width =
-maxSize;
-
-}
-
-}
-else{
-
-if(height > maxSize){
-
-width =
-width * maxSize / height;
-
-height =
-maxSize;
-
-}
-
-}
-
-
-canvas.width =
-width;
-
-canvas.height =
-height;
-
-
-const ctx =
-canvas.getContext("2d");
-
-
-ctx.drawImage(
-img,
-0,
-0,
-width,
-height
-);
-
-
-const compressed =
-canvas.toDataURL(
-"image/jpeg",
-0.65
-);
-
-
-resolve(compressed);
-
-};
-
-
-img.onerror=reject;
-
-img.src =
-e.target.result;
-
-};
-
-
-reader.onerror=reject;
-
-reader.readAsDataURL(file);
-
-});
-
-}
-
-
-/* =====================================================
-   PHOTO PREVIEW
-===================================================== */
-
-function handlePhotoPreview(
-inputId,
-previewId
-){
-
-const input =
-document.getElementById(inputId);
-
-const preview =
-document.getElementById(previewId);
-
-const file =
-input.files[0];
-
-
-if(!file){
-
-return;
-
-}
-
-
-const reader =
-new FileReader();
-
-
-reader.onload=function(e){
-
-preview.src =
-e.target.result;
-
-preview.style.display =
-"block";
-
-};
-
-
-reader.readAsDataURL(file);
-
-}
-
-
-/* =====================================================
-   AUTH MESSAGE
-===================================================== */
-
-function showAuthMessage(
-message,
-type="success"
-){
-
-const box =
-document.getElementById(
-"authMessage"
-);
-
-box.className =
-"message " + type;
-
-box.innerText =
-message;
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-async function login(){
-
-const role =
-document.getElementById(
-"loginRole"
-).value;
-
-const email =
-document.getElementById(
-"email"
-).value.trim();
-
-const password =
-document.getElementById(
-"password"
-).value;
-
-
-if(!email || !password){
-
-showAuthMessage(
-"Please enter email and password.",
-"error"
-);
-
-return;
-
-}
-
-
-try{
-
-const {data,error} =
-await supabaseClient.auth
-.signInWithPassword({
-
-email,
-password
-
-});
-
-
-if(error)
-throw error;
-
-
-currentUser =
-data.user;
-
-
-const {data:profile,
-error:profileError} =
-await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",currentUser.id)
-.single();
-
-
-if(profileError)
-throw profileError;
-
-
-currentProfile =
-profile;
-
-currentRole =
-profile.role;
-
-
-if(currentRole !== role){
-
-await supabaseClient.auth
-.signOut();
-
-showAuthMessage(
-"Selected login role does not match account.",
-"error"
-);
-
-return;
-
-}
-
-
-document.getElementById(
-"loginPage"
-).style.display="none";
-
-
-document.getElementById(
-"app"
-).style.display="block";
-
-
-initializeApp();
-
-showNotification(
-"Login successful."
-);
-
-}
-catch(error){
-
-console.error(error);
-
-showAuthMessage(
-error.message ||
-"Login failed.",
-"error"
-);
-
-}
-
-}
-
-
-/* =====================================================
-   REGISTER
-===================================================== */
-
-async function registerFarmer(){
-
-const fullName =
-document.getElementById(
-"fullName"
-).value.trim();
-
-const email =
-document.getElementById(
-"email"
-).value.trim();
-
-const password =
-document.getElementById(
-"password"
-).value;
-
-
-if(!fullName ||
-!email ||
-!password){
-
-showAuthMessage(
-"Enter all registration details.",
-"error"
-);
-
-return;
-
-}
-
-
-if(password.length < 6){
-
-showAuthMessage(
-"Password must be at least 6 characters.",
-"error"
-);
-
-return;
-
-}
-
-
-try{
-
-const {error} =
-await supabaseClient.auth
-.signUp({
-
-email,
-password,
-
-options:{
-data:{
-full_name:fullName
-}
-}
-
-});
-
-
-if(error)
-throw error;
-
-
-showAuthMessage(
-"Registration successful. Check your email.",
-"success"
-);
-
-}
-catch(error){
-
-showAuthMessage(
-error.message,
-"error"
-);
-
-}
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-async function logout(){
-
-await supabaseClient.auth.signOut();
-
-currentUser=null;
-currentProfile=null;
-currentRole=null;
-
-document.getElementById(
-"app"
-).style.display="none";
-
-document.getElementById(
-"loginPage"
-).style.display="flex";
-
-}
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-function initializeApp(){
-
-displayFarmers();
-
-displayCrops();
-
-updateFarmerDropdowns();
-
-updateDashboard();
-
-displayNotifications();
-
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-function showSection(id){
-
-document
-.querySelectorAll(".section")
-.forEach(section=>{
-section.classList.remove("active");
-});
-
-
-document
-.getElementById(id)
-.classList.add("active");
-
-}
-
-
-/* =====================================================
-   ROLE
-===================================================== */
-
-function isAdmin(){
-
-return currentRole === "admin";
-
-}
-
-
-function getCurrentFarmerName(){
-
-return (
-currentProfile?.full_name ||
-currentUser?.user_metadata?.full_name ||
-""
-);
-
-}
-
-
-/* =====================================================
-   VISIBLE DATA
-===================================================== */
-
-function visibleFarmers(){
-
-if(isAdmin())
-return farmers;
-
-
-const name =
-getCurrentFarmerName()
-.toLowerCase();
-
-
-return farmers.filter(
-f =>
-f.name.toLowerCase() === name
-);
-
-}
-
-
-function visibleCrops(){
-
-if(isAdmin())
-return crops;
-
-
-const name =
-getCurrentFarmerName()
-.toLowerCase();
-
-
-return crops.filter(
-c =>
-c.farmer.toLowerCase() === name
-);
-
-}
-
-
-function visibleProfits(){
-
-if(isAdmin())
-return profitRecords;
-
-
-const name =
-getCurrentFarmerName()
-.toLowerCase();
-
-
-return profitRecords.filter(
-p =>
-p.farmer.toLowerCase() === name
-);
-
-}
-
-
-/* =====================================================
-   FARMER SAVE / UPDATE
-===================================================== */
-
-async function saveFarmer(){
-
-if(!isAdmin()){
-
-alert(
-"Only Admin can add or edit farmers."
-);
-
-return;
-
-}
-
-
-const name =
-document.getElementById(
-"farmerName"
-).value.trim();
-
-const village =
-document.getElementById(
-"village"
-).value.trim();
-
-const mobile =
-document.getElementById(
-"mobile"
-).value.trim();
-
-const land =
-document.getElementById(
-"land"
-).value;
-
-
-if(!name ||
-!village ||
-!mobile ||
-!land){
-
-alert(
-"Please fill all farmer details."
-);
-
-return;
-
-}
-
-
-const input =
-document.getElementById(
-"farmerPhoto"
-);
-
-let photo = "";
-
-
-if(input.files[0]){
-
-photo =
-await compressImage(
-input.files[0]
-);
-
-}
-
-
-if(editingFarmerIndex === -1){
-
-farmers.push({
-
-name,
-village,
-mobile,
-land,
-photo
-
-});
-
-
-showNotification(
-"Farmer added: " + name
-);
-
-alert(
-"Farmer added successfully."
-);
-
-}
-else{
-
-if(!photo){
-
-photo =
-farmers[
-editingFarmerIndex
-].photo || "";
-
-}
-
-
-farmers[
-editingFarmerIndex
-]={
-
-name,
-village,
-mobile,
-land,
-photo
-
-};
-
-
-showNotification(
-"Farmer updated: " + name
-);
-
-alert(
-"Farmer updated successfully."
-);
-
-}
-
-
-saveData();
-
-displayFarmers();
-
-updateFarmerDropdowns();
-
-updateDashboard();
-
-cancelFarmerEdit();
-
-}
-
-
-/* =====================================================
-   DISPLAY FARMERS
-===================================================== */
-
-function displayFarmers(){
-
-const table =
-document.getElementById(
-"farmerTable"
-);
-
-table.innerHTML="";
-
-
-let list =
-visibleFarmers();
-
-
-const search =
-(
-document.getElementById(
-"farmerSearch"
-)?.value || ""
-).toLowerCase();
-
-
-list =
-list.filter(f =>
-
-f.name.toLowerCase()
-.includes(search) ||
-
-f.village.toLowerCase()
-.includes(search) ||
-
-f.mobile.toLowerCase()
-.includes(search)
-
-);
-
-
-list.forEach(farmer=>{
-
-const index =
-farmers.indexOf(farmer);
-
-
-table.innerHTML += `
-
-<tr>
-
-<td>
-
-${
-farmer.photo
-?
-`<img src="${farmer.photo}"
-class="small-photo">`
-:
-"📷"
-}
-
-</td>
-
-<td>
-${escapeHTML(farmer.name)}
-</td>
-
-<td>
-${escapeHTML(farmer.village)}
-</td>
-
-<td>
-${escapeHTML(farmer.mobile)}
-</td>
-
-<td>
-${escapeHTML(farmer.land)} Acre
-</td>
-
-<td>
-
-<div class="action-buttons">
-
-${
-isAdmin()
-?
-`
-
-<button
-class="warning"
-onclick="editFarmer(${index})">
-
-✏️ Edit
-
-</button>
-
-<button
-class="danger"
-onclick="deleteFarmer(${index})">
-
-🗑️ Delete
-
-</button>
-
-`
-:
-"View Only"
-}
-
-</div>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-
-/* =====================================================
-   EDIT FARMER
-===================================================== */
-
-function editFarmer(index){
-
-if(!isAdmin())
-return;
-
-
-const farmer =
-farmers[index];
-
-
-editingFarmerIndex =
-index;
-
-
-document.getElementById(
-"farmerName"
-).value =
-farmer.name;
-
-document.getElementById(
-"village"
-).value =
-farmer.village;
-
-document.getElementById(
-"mobile"
-).value =
-farmer.mobile;
-
-document.getElementById(
-"land"
-).value =
-farmer.land;
-
-
-const preview =
-document.getElementById(
-"farmerPreview"
-);
-
-
-if(farmer.photo){
-
-preview.src =
-farmer.photo;
-
-preview.style.display =
-"block";
-
-}
-else{
-
-preview.style.display =
-"none";
-
-}
-
-
-document.getElementById(
-"farmerFormTitle"
-).innerText =
-"Edit Farmer";
-
-
-document.getElementById(
-"farmerSubmitBtn"
-).innerText =
-"Update Farmer";
-
-
-document.getElementById(
-"cancelFarmerBtn"
-).style.display =
-"inline-block";
-
-
-showSection("farmers");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =====================================================
-   CANCEL FARMER EDIT
-===================================================== */
-
-function cancelFarmerEdit(){
-
-editingFarmerIndex =
--1;
-
-
-document.getElementById(
-"farmerName"
-).value="";
-
-document.getElementById(
-"village"
-).value="";
-
-document.getElementById(
-"mobile"
-).value="";
-
-document.getElementById(
-"land"
-).value="";
-
-document.getElementById(
-"farmerPhoto"
-).value="";
-
-
-document.getElementById(
-"farmerPreview"
-).style.display =
-"none";
-
-
-document.getElementById(
-"farmerFormTitle"
-).innerText =
-"Add Farmer";
-
-
-document.getElementById(
-"farmerSubmitBtn"
-).innerText =
-"Add Farmer";
-
-
-document.getElementById(
-"cancelFarmerBtn"
-).style.display =
-"none";
-
-}
-
-
-/* =====================================================
-   DELETE FARMER
-===================================================== */
-
-function deleteFarmer(index){
-
-if(!isAdmin())
-return;
-
-
-if(!confirm(
-"Are you sure you want to delete this farmer?"
-))
-return;
-
-
-const name =
-farmers[index].name;
-
-
-farmers.splice(index,1);
-
-saveData();
-
-displayFarmers();
-
-updateFarmerDropdowns();
-
-updateDashboard();
-
-showNotification(
-"Farmer deleted: " + name
-);
-
-}
-
-
-/* =====================================================
-   DROPDOWNS
-===================================================== */
-
-function updateFarmerDropdowns(){
-
-const cropSelect =
-document.getElementById(
-"cropFarmer"
-);
-
-const profitSelect =
-document.getElementById(
-"profitFarmer"
-);
-
-
-cropSelect.innerHTML =
-'<option value="">Select Farmer</option>';
-
-profitSelect.innerHTML =
-'<option value="">Select Farmer</option>';
-
-
-visibleFarmers()
-.forEach(f=>{
-
-cropSelect.innerHTML += `
-
-<option value="${escapeHTML(f.name)}">
-
-${escapeHTML(f.name)}
-
-</option>
-
-`;
-
-profitSelect.innerHTML += `
-
-<option value="${escapeHTML(f.name)}">
-
-${escapeHTML(f.name)}
-
-</option>
-
-`;
-
-});
-
-}
-
-
-/* =====================================================
-   SAVE CROP
-===================================================== */
-
-async function saveCrop(){
-
-const farmer =
-document.getElementById(
-"cropFarmer"
-).value;
-
-const name =
-document.getElementById(
-"cropName"
-).value.trim();
-
-const date =
-document.getElementById(
-"cropDate"
-).value;
-
-const production =
-document.getElementById(
-"production"
-).value;
-
-const price =
-document.getElementById(
-"price"
-).value;
-
-
-if(!farmer ||
-!name ||
-!date ||
-!production ||
-!price){
-
-alert(
-"Please fill all crop details."
-);
-
-return;
-
-}
-
-
-const input =
-document.getElementById(
-"cropPhoto"
-);
-
-let photo="";
-
-
-if(input.files[0]){
-
-photo =
-await compressImage(
-input.files[0]
-);
-
-}
-
-
-if(editingCropIndex === -1){
-
-crops.push({
-
-farmer,
-name,
-date,
-production,
-price,
-photo
-
-});
-
-showNotification(
-"Crop added: " + name
-);
-
-alert(
-"Crop added successfully."
-);
-
-}
-else{
-
-if(!photo){
-
-photo =
-crops[
-editingCropIndex
-].photo || "";
-
-}
-
-
-crops[
-editingCropIndex
-]={
-
-farmer,
-name,
-date,
-production,
-price,
-photo
-
-};
-
-
-showNotification(
-"Crop updated: " + name
-);
-
-alert(
-"Crop updated successfully."
-);
-
-}
-
-
-saveData();
-
-displayCrops();
-
-updateDashboard();
-
-cancelCropEdit();
-
-}
-
-
-/* =====================================================
-   DISPLAY CROPS
-===================================================== */
-
-function displayCrops(){
-
-const table =
-document.getElementById(
-"cropTable"
-);
-
-table.innerHTML="";
-
-
-let list =
-visibleCrops();
-
-
-const search =
-(
-document.getElementById(
-"cropSearch"
-)?.value || ""
-).toLowerCase();
-
-
-list =
-list.filter(c=>
-
-c.name.toLowerCase()
-.includes(search) ||
-
-c.farmer.toLowerCase()
-.includes(search)
-
-);
-
-
-list.forEach(crop=>{
-
-const index =
-crops.indexOf(crop);
-
-
-table.innerHTML += `
-
-<tr>
-
-<td>
-
-${
-crop.photo
-?
-`<img src="${crop.photo}"
-class="small-photo">`
-:
-"📷"
-}
-
-</td>
-
-<td>
-${escapeHTML(crop.farmer)}
-</td>
-
-<td>
-${escapeHTML(crop.name)}
-</td>
-
-<td>
-${escapeHTML(crop.date)}
-</td>
-
-<td>
-${escapeHTML(crop.production)} KG
-</td>
-
-<td>
-₹${escapeHTML(crop.price)}
-</td>
-
-<td>
-
-<div class="action-buttons">
-
-<button
-class="warning"
-onclick="editCrop(${index})">
-
-✏️ Edit
-
-</button>
-
-<button
-class="danger"
-onclick="deleteCrop(${index})">
-
-🗑️ Delete
-
-</button>
-
-</div>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-
-/* =====================================================
-   EDIT CROP
-===================================================== */
-
-function editCrop(index){
-
-const crop =
-crops[index];
-
-
-editingCropIndex =
-index;
-
-
-document.getElementById(
-"cropFarmer"
-).value =
-crop.farmer;
-
-document.getElementById(
-"cropName"
-).value =
-crop.name;
-
-document.getElementById(
-"cropDate"
-).value =
-crop.date;
-
-document.getElementById(
-"production"
-).value =
-crop.production;
-
-document.getElementById(
-"price"
-).value =
-crop.price;
-
-
-const preview =
-document.getElementById(
-"cropPreview"
-);
-
-
-if(crop.photo){
-
-preview.src =
-crop.photo;
-
-preview.style.display =
-"block";
-
-}
-else{
-
-preview.style.display =
-"none";
-
-}
-
-
-document.getElementById(
-"cropFormTitle"
-).innerText =
-"Edit Crop";
-
-
-document.getElementById(
-"cropSubmitBtn"
-).innerText =
-"Update Crop";
-
-
-document.getElementById(
-"cancelEditBtn"
-).style.display =
-"inline-block";
-
-
-showSection("crops");
-
-}
-
-
-/* =====================================================
-   CANCEL CROP EDIT
-===================================================== */
-
-function cancelCropEdit(){
-
-editingCropIndex =
--1;
-
-
-document.getElementById(
-"cropFarmer"
-).value="";
-
-document.getElementById(
-"cropName"
-).value="";
-
-document.getElementById(
-"cropDate"
-).value="";
-
-document.getElementById(
-"production"
-).value="";
-
-document.getElementById(
-"price"
-).value="";
-
-document.getElementById(
-"cropPhoto"
-).value="";
-
-
-document.getElementById(
-"cropPreview"
-).style.display =
-"none";
-
-
-document.getElementById(
-"cropFormTitle"
-).innerText =
-"Add Crop";
-
-
-document.getElementById(
-"cropSubmitBtn"
-).innerText =
-"Add Crop";
-
-
-document.getElementById(
-"cancelEditBtn"
-).style.display =
-"none";
-
-}
-
-
-/* =====================================================
-   DELETE CROP
-===================================================== */
-
-function deleteCrop(index){
-
-if(!confirm(
-"Delete this crop?"
-))
-return;
-
-
-const name =
-crops[index].name;
-
-
-crops.splice(index,1);
-
-saveData();
-
-displayCrops();
-
-updateDashboard();
-
-showNotification(
-"Crop deleted: " + name
-);
-
-}
-
-
-/* =====================================================
-   PROFIT CALCULATOR
-===================================================== */
-
-function calculateProfit(){
-
-const farmer =
-document.getElementById(
-"profitFarmer"
-).value;
-
-const selling =
-Number(
-document.getElementById(
-"selling"
-).value
-) || 0;
-
-const seed =
-Number(
-document.getElementById(
-"seed"
-).value
-) || 0;
-
-const fertilizer =
-Number(
-document.getElementById(
-"fertilizer"
-).value
-) || 0;
-
-const medicine =
-Number(
-document.getElementById(
-"medicine"
-).value
-) || 0;
-
-const labour =
-Number(
-document.getElementById(
-"labour"
-).value
-) || 0;
-
-
-if(!farmer){
-
-alert(
-"Please select farmer."
-);
-
-return;
-
-}
-
-
-const expense =
-seed +
-fertilizer +
-medicine +
-labour;
-
-
-const profit =
-selling -
-expense;
-
-
-profitRecords.push({
-
-farmer,
-income:selling,
-expense,
-profit
-
-});
-
-
-saveData();
-
-updateDashboard();
-
-
-document.getElementById(
-"profitResult"
-).innerHTML = `
-
-<div class="message success">
-
-Income: ₹${selling}
-
-<br>
-
-Total Expense: ₹${expense}
-
-<br>
-
-Profit: ₹${profit}
-
-</div>
-
-`;
-
-
-showNotification(
-"Profit calculated for " + farmer
-);
-
-}
-
-
-/* =====================================================
-   DASHBOARD
-===================================================== */
-
-function updateDashboard(){
-
-const farmerList =
-visibleFarmers();
-
-const cropList =
-visibleCrops();
-
-const profitList =
-visibleProfits();
-
-
-document.getElementById(
-"totalFarmers"
-).innerText =
-farmerList.length;
-
-
-document.getElementById(
-"totalCrops"
-).innerText =
-cropList.length;
-
-
-let expense=0;
-let profit=0;
-
-
-profitList.forEach(p=>{
-
-expense +=
-Number(p.expense)||0;
-
-profit +=
-Number(p.profit)||0;
-
-});
-
-
-document.getElementById(
-"totalExpense"
-).innerText =
-expense;
-
-
-document.getElementById(
-"totalProfit"
-).innerText =
-profit;
-
-
-displayProfitReport();
-
-}
-
-
-/* =====================================================
-   PROFIT REPORT
-===================================================== */
-
-function displayProfitReport(){
-
-const table =
-document.getElementById(
-"profitReportTable"
-);
-
-table.innerHTML="";
-
-
-const grouped={};
-
-
-visibleProfits()
-.forEach(p=>{
-
-if(!grouped[p.farmer]){
-
-grouped[p.farmer]={
-income:0,
-expense:0,
-profit:0
-};
-
-}
-
-
-grouped[p.farmer].income +=
-Number(p.income)||0;
-
-grouped[p.farmer].expense +=
-Number(p.expense)||0;
-
-grouped[p.farmer].profit +=
-Number(p.profit)||0;
-
-});
-
-
-Object.keys(grouped)
-.forEach(farmer=>{
-
-const p =
-grouped[farmer];
-
-
-table.innerHTML += `
-
-<tr>
-
-<td>${escapeHTML(farmer)}</td>
-
-<td>₹${p.income}</td>
-
-<td>₹${p.expense}</td>
-
-<td>₹${p.profit}</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-
-/* =====================================================
-   NOTIFICATIONS
-===================================================== */
-
-function showNotification(message){
-
-notifications.unshift({
-
-message,
-time:new Date()
-.toLocaleString()
-
-});
-
-
-if(notifications.length>50){
-
-notifications =
-notifications.slice(0,50);
-
-}
-
-
-saveData();
-
-displayNotifications();
-
-}
-
-
-function displayNotifications(){
-
-const box =
-document.getElementById(
-"notificationList"
-);
-
-if(!box)
-return;
-
-
-box.innerHTML="";
-
-
-if(notifications.length===0){
-
-box.innerHTML =
-"<p>No notifications.</p>";
-
-return;
-
-}
-
-
-notifications.forEach(n=>{
-
-box.innerHTML += `
-
-<div class="notification">
-
-<strong>
-🔔 ${escapeHTML(n.message)}
-</strong>
-
-<br>
-
-<small>
-${escapeHTML(n.time)}
-</small>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-function clearNotifications(){
-
-if(!confirm(
-"Clear all notifications?"
-))
-return;
-
-
-notifications=[];
-
-saveData();
-
-displayNotifications();
-
-}
-
-
-/* =====================================================
-   CSV DOWNLOAD
-===================================================== */
-
-function downloadCSV(
-filename,
-rows
-){
-
-if(!rows.length){
-
-alert(
-"No data available."
-);
-
-return;
-
-}
-
-
-const csv =
-rows.map(row=>
-
-row.map(value=>{
-
-let text =
-String(value ?? "");
-
-text =
-text.replace(/"/g,'""');
-
-return `"${text}"`;
-
-}).join(",")
-
-).join("\n");
-
-
-const blob =
-new Blob(
-[csv],
-{
-type:"text/csv;charset=utf-8;"
-}
-);
-
-
-const url =
-URL.createObjectURL(blob);
-
-
-const link =
-document.createElement("a");
-
-
-link.href=url;
-
-link.download=filename;
-
-document.body.appendChild(link);
-
-link.click();
-
-document.body.removeChild(link);
-
-URL.revokeObjectURL(url);
-
-}
-
-
-/* =====================================================
-   FARMER REPORT
-===================================================== */
-
-function downloadFarmerReport(){
-
-const rows=[
-[
-"Name",
-"Village",
-"Mobile",
-"Land"
-]
-];
-
-
-visibleFarmers()
-.forEach(f=>{
-
-rows.push([
-f.name,
-f.village,
-f.mobile,
-f.land
-]);
-
-});
-
-
-downloadCSV(
-"Farmer_Report.csv",
-rows
-);
-
-}
-
-
-/* =====================================================
-   CROP REPORT
-===================================================== */
-
-function downloadCropReport(){
-
-const rows=[
-[
-"Farmer",
-"Crop",
-"Date",
-"Production KG",
-"Market Price"
-]
-];
-
-
-visibleCrops()
-.forEach(c=>{
-
-rows.push([
-c.farmer,
-c.name,
-c.date,
-c.production,
-c.price
-]);
-
-});
-
-
-downloadCSV(
-"Crop_Report.csv",
-rows
-);
-
-}
-
-
-/* =====================================================
-   PROFIT REPORT
-===================================================== */
-
-function downloadProfitReport(){
-
-const rows=[
-[
-"Farmer",
-"Income",
-"Expense",
-"Profit"
-]
-];
-
-
-visibleProfits()
-.forEach(p=>{
-
-rows.push([
-p.farmer,
-p.income,
-p.expense,
-p.profit
-]);
-
-});
-
-
-downloadCSV(
-"Profit_Report.csv",
-rows
-);
-
-}
-
-
-/* =====================================================
-   ALL REPORTS
-===================================================== */
-
-function downloadAllReports(){
-
-downloadFarmerReport();
-
-setTimeout(
-()=>{
-downloadCropReport();
-},
-500
-);
-
-setTimeout(
-()=>{
-downloadProfitReport();
-},
-1000
-);
-
-
-alert(
-"All Reports Downloaded Successfully!"
-);
-
-}
-
-
-/* =====================================================
-   PRINT REPORT
-===================================================== */
-
-function printReport(){
-
-const data =
-visibleProfits();
-
-
-let html=`
-
-<html>
-
-<head>
-
-<title>
-Farmer Profit Report
-</title>
-
-<style>
-
-body{
-font-family:Arial;
-padding:20px;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-th,td{
-border:1px solid #333;
-padding:8px;
-text-align:center;
-}
-
-th{
-background:#087f23;
-color:white;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<h1>
-Farmer Management System
-</h1>
-
-<h2>
-Profit Report
-</h2>
+<h2>Profit Records</h2>
 
 <table>
+
+<thead>
 
 <tr>
 
@@ -2917,102 +959,511 @@ Profit Report
 
 </tr>
 
-`;
+</thead>
 
-
-data.forEach(p=>{
-
-html+=`
-
-<tr>
-
-<td>
-${escapeHTML(p.farmer)}
-</td>
-
-<td>
-₹${p.income}
-</td>
-
-<td>
-₹${p.expense}
-</td>
-
-<td>
-₹${p.profit}
-</td>
-
-</tr>
-
-`;
-
-});
-
-
-html+=`
+<tbody id="profitTable"></tbody>
 
 </table>
 
-</body>
+</div>
 
-</html>
-
-`;
+</section>
 
 
-const win =
-window.open(
-"",
-"_blank"
+<!-- ================= NOTIFICATIONS ================= -->
+
+<section id="notifications" class="section">
+
+<div class="form-box">
+
+<h2>Notifications</h2>
+
+<textarea
+id="notificationText"
+placeholder="Enter notification"
+rows="4">
+</textarea>
+
+<button
+class="primary"
+onclick="addNotification()">
+Add Notification
+</button>
+
+</div>
+
+
+<div class="form-box">
+
+<h2>Notification List</h2>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Message</th>
+<th>Time</th>
+</tr>
+
+</thead>
+
+<tbody id="notificationTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+</div>
+
+
+<footer>
+
+BCA Project – Farmer Management System
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE CONFIGURATION
+===================================================== */
+
+const SUPABASE_URL =
+"https://qyrklifhllqbjytewfci.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_J8FR9OuOoV07RV5xrte1cQ__NHHXlqO";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
-win.document.write(html);
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
 
-win.document.close();
+let currentUser = null;
+let currentProfile = null;
 
-win.print();
+let editingFarmerIndex = -1;
+let editingCropIndex = -1;
+
+
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
+
+function saveData(){
+
+    localStorage.setItem(
+        "farmers",
+        JSON.stringify(farmers)
+    );
+
+    localStorage.setItem(
+        "crops",
+        JSON.stringify(crops)
+    );
+
+    localStorage.setItem(
+        "profitRecords",
+        JSON.stringify(profitRecords)
+    );
+
+    localStorage.setItem(
+        "notifications",
+        JSON.stringify(notifications)
+    );
+}
+
+
+let farmers =
+JSON.parse(
+    localStorage.getItem("farmers")
+) || [];
+
+
+let crops =
+JSON.parse(
+    localStorage.getItem("crops")
+) || [];
+
+
+let profitRecords =
+JSON.parse(
+    localStorage.getItem("profitRecords")
+) || [];
+
+
+let notifications =
+JSON.parse(
+    localStorage.getItem("notifications")
+) || [];
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+/* =====================================================
+   IMAGE COMPRESSION
+===================================================== */
+
+function compressImage(file){
+
+    return new Promise((resolve,reject)=>{
+
+        const reader = new FileReader();
+
+        reader.onload = function(e){
+
+            const img = new Image();
+
+            img.onload = function(){
+
+                const canvas =
+                    document.createElement("canvas");
+
+                const maxSize = 700;
+
+                let width = img.width;
+                let height = img.height;
+
+                if(width > height){
+
+                    if(width > maxSize){
+
+                        height =
+                            height * maxSize / width;
+
+                        width = maxSize;
+                    }
+
+                }else{
+
+                    if(height > maxSize){
+
+                        width =
+                            width * maxSize / height;
+
+                        height = maxSize;
+                    }
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx =
+                    canvas.getContext("2d");
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+                resolve(
+                    canvas.toDataURL(
+                        "image/jpeg",
+                        0.65
+                    )
+                );
+
+            };
+
+            img.onerror = reject;
+
+            img.src = e.target.result;
+
+        };
+
+        reader.onerror = reject;
+
+        reader.readAsDataURL(file);
+
+    });
+}
+
+
+/* =====================================================
+   PHOTO PREVIEW
+===================================================== */
+
+async function handlePhotoPreview(input,previewId){
+
+    const preview =
+        document.getElementById(previewId);
+
+    if(!input.files || !input.files[0]){
+
+        preview.style.display = "none";
+        preview.src = "";
+
+        return;
+    }
+
+    try{
+
+        const image =
+            await compressImage(input.files[0]);
+
+        preview.src = image;
+
+        preview.style.display = "block";
+
+    }catch(error){
+
+        console.error(error);
+
+        alert("Photo could not be loaded.");
+    }
+}
+
+
+/* =====================================================
+   AUTH MESSAGE
+===================================================== */
+
+function showAuthMessage(message,type){
+
+    const box =
+        document.getElementById("authMessage");
+
+    box.innerText = message;
+
+    box.className =
+        "message " +
+        (type === "success"
+            ? "success"
+            : "error");
+
+    box.style.display = "block";
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+async function login(){
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const selectedRole =
+        document.getElementById("loginRole").value;
+
+    if(!email || !password){
+
+        showAuthMessage(
+            "Please enter email and password.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const {data,error} =
+        await supabaseClient.auth.signInWithPassword({
+
+            email:email,
+            password:password
+
+        });
+
+
+    if(error){
+
+        showAuthMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    currentUser = data.user;
+
+
+    const {data:profile,error:profileError} =
+        await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id",currentUser.id)
+        .maybeSingle();
+
+
+    if(profileError){
+
+        showAuthMessage(
+            profileError.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(!profile){
+
+        showAuthMessage(
+            "Profile not found.",
+            "error"
+        );
+
+        await supabaseClient.auth.signOut();
+
+        return;
+    }
+
+
+    currentProfile = profile;
+
+
+    if(profile.role !== selectedRole){
+
+        showAuthMessage(
+            "Selected login role is incorrect.",
+            "error"
+        );
+
+        await supabaseClient.auth.signOut();
+
+        return;
+    }
+
+
+    document.getElementById("authPage")
+        .style.display = "none";
+
+    document.getElementById("app")
+        .style.display = "block";
+
+
+    initializeApp();
 
 }
 
 
 /* =====================================================
-   RESET PROFIT
+   FARMER REGISTRATION
 ===================================================== */
 
-function resetProfitData(){
+async function registerFarmer(){
 
-if(!isAdmin()){
+    const fullName =
+        document.getElementById("fullName")
+        .value.trim();
 
-alert(
-"Only Admin can reset profit data."
-);
+    const email =
+        document.getElementById("email")
+        .value.trim();
 
-return;
+    const password =
+        document.getElementById("password")
+        .value;
 
+
+    if(!fullName || !email || !password){
+
+        showAuthMessage(
+            "Please enter full name, email and password.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        showAuthMessage(
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const {data,error} =
+        await supabaseClient.auth.signUp({
+
+            email:email,
+
+            password:password,
+
+            options:{
+                data:{
+                    full_name:fullName
+                }
+            }
+
+        });
+
+
+    if(error){
+
+        showAuthMessage(
+            error.message,
+            "error"
+        );
+
+        return;
+    }
+
+
+    showAuthMessage(
+        "Farmer registration successful. Please verify your email if required.",
+        "success"
+    );
 }
 
 
-if(!confirm(
-"Delete all profit records?"
-))
-return;
+/* =====================================================
+   LOGOUT
+===================================================== */
 
+async function logout(){
 
-profitRecords=[];
+    await supabaseClient.auth.signOut();
 
-saveData();
+    currentUser = null;
+    currentProfile = null;
 
-updateDashboard();
+    document.getElementById("app")
+        .style.display = "none";
 
-showNotification(
-"All profit data was reset."
-);
-
-alert(
-"Profit data reset successfully."
-);
-
+    document.getElementById("authPage")
+        .style.display = "flex";
 }
 
 
@@ -3022,59 +1473,39 @@ alert(
 
 async function checkSession(){
 
-const {data} =
-await supabaseClient.auth
-.getSession();
+    const {
+        data:{
+            session
+        }
+    } =
+        await supabaseClient.auth.getSession();
 
 
-if(!data.session)
-return;
+    if(session){
+
+        currentUser = session.user;
+
+        const {data:profile} =
+            await supabaseClient
+            .from("profiles")
+            .select("*")
+            .eq("id",currentUser.id)
+            .maybeSingle();
 
 
-currentUser =
-data.session.user;
+        if(profile){
 
+            currentProfile = profile;
 
-try{
+            document.getElementById("authPage")
+                .style.display = "none";
 
-const {data:profile} =
-await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",currentUser.id)
-.single();
+            document.getElementById("app")
+                .style.display = "block";
 
-
-if(profile){
-
-currentProfile =
-profile;
-
-currentRole =
-profile.role;
-
-
-document.getElementById(
-"loginPage"
-).style.display="none";
-
-
-document.getElementById(
-"app"
-).style.display="block";
-
-
-initializeApp();
-
-}
-
-}
-catch(error){
-
-console.log(error);
-
-}
-
+            initializeApp();
+        }
+    }
 }
 
 
@@ -3082,19 +1513,1794 @@ console.log(error);
    AUTH STATE
 ===================================================== */
 
-supabaseClient.auth
-.onAuthStateChange(
-(event,session)=>{
+supabaseClient.auth.onAuthStateChange(
+    (event,session)=>{
 
-if(event==="SIGNED_OUT"){
+        if(session){
 
-currentUser=null;
-currentProfile=null;
-currentRole=null;
+            currentUser = session.user;
 
+        }else{
+
+            currentUser = null;
+            currentProfile = null;
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE APP
+===================================================== */
+
+function initializeApp(){
+
+    displayFarmers();
+    displayCrops();
+    updateFarmerDropdowns();
+    displayProfitRecords();
+    displayNotifications();
+    updateDashboard();
 }
 
-});
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function showSection(id){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(section=>{
+            section.classList.remove("active");
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+
+    if(id === "dashboard"){
+        updateDashboard();
+    }
+
+    if(id === "farmers"){
+        displayFarmers();
+    }
+
+    if(id === "crops"){
+        displayCrops();
+    }
+
+    if(id === "profit"){
+        displayProfitRecords();
+        updateFarmerDropdowns();
+    }
+
+    if(id === "notifications"){
+        displayNotifications();
+    }
+}
+
+
+/* =====================================================
+   GET VISIBLE FARMERS
+===================================================== */
+
+function getVisibleFarmers(){
+
+    if(
+        currentProfile &&
+        currentProfile.role === "farmer"
+    ){
+
+        const farmerName =
+            currentProfile.full_name || "";
+
+        return farmers.filter(
+            farmer =>
+                farmer.name.toLowerCase() ===
+                farmerName.toLowerCase()
+        );
+
+    }
+
+    return farmers;
+}
+
+
+/* =====================================================
+   GET VISIBLE CROPS
+===================================================== */
+
+function getVisibleCrops(){
+
+    if(
+        currentProfile &&
+        currentProfile.role === "farmer"
+    ){
+
+        const farmerName =
+            currentProfile.full_name || "";
+
+        return crops.filter(
+            crop =>
+                crop.farmer.toLowerCase() ===
+                farmerName.toLowerCase()
+        );
+    }
+
+    return crops;
+}
+
+
+/* =====================================================
+   SAVE FARMER
+===================================================== */
+
+async function saveFarmer(){
+
+    const name =
+        document.getElementById("farmerName")
+        .value.trim();
+
+    const village =
+        document.getElementById("village")
+        .value.trim();
+
+    const mobile =
+        document.getElementById("mobile")
+        .value.trim();
+
+    const land =
+        document.getElementById("land")
+        .value;
+
+
+    if(!name || !village || !mobile || !land){
+
+        alert("Please fill all farmer details.");
+
+        return;
+    }
+
+
+    let photo = "";
+
+
+    const photoInput =
+        document.getElementById("farmerPhoto");
+
+
+    if(photoInput.files[0]){
+
+        photo =
+            await compressImage(
+                photoInput.files[0]
+            );
+    }
+
+
+    if(editingFarmerIndex === -1){
+
+        farmers.push({
+
+            name:name,
+            village:village,
+            mobile:mobile,
+            land:land,
+            photo:photo
+
+        });
+
+    }else{
+
+        const old =
+            farmers[editingFarmerIndex];
+
+
+        farmers[editingFarmerIndex] = {
+
+            name:name,
+
+            village:village,
+
+            mobile:mobile,
+
+            land:land,
+
+            photo:
+                photo || old.photo || ""
+
+        };
+
+    }
+
+
+    saveData();
+
+    displayFarmers();
+
+    updateFarmerDropdowns();
+
+    updateDashboard();
+
+    cancelFarmerEdit();
+
+    alert("Farmer saved successfully.");
+}
+
+
+/* =====================================================
+   DISPLAY FARMERS
+===================================================== */
+
+function displayFarmers(){
+
+    const table =
+        document.getElementById("farmerTable");
+
+    const search =
+        document.getElementById("farmerSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    let visible =
+        getVisibleFarmers();
+
+
+    if(search){
+
+        visible =
+            visible.filter(
+                farmer =>
+                    farmer.name
+                    .toLowerCase()
+                    .includes(search)
+            );
+    }
+
+
+    if(visible.length === 0){
+
+        table.innerHTML =
+            `<tr>
+                <td colspan="6">
+                    No farmer found
+                </td>
+            </tr>`;
+
+        return;
+    }
+
+
+    table.innerHTML =
+        visible.map((farmer)=>{
+
+            const originalIndex =
+                farmers.indexOf(farmer);
+
+
+            return `
+
+            <tr>
+
+            <td>
+                ${
+                    farmer.photo
+                    ?
+                    `<img
+                    src="${farmer.photo}"
+                    class="photo">`
+                    :
+                    "No Photo"
+                }
+            </td>
+
+            <td>
+                ${escapeHTML(farmer.name)}
+            </td>
+
+            <td>
+                ${escapeHTML(farmer.village)}
+            </td>
+
+            <td>
+                ${escapeHTML(farmer.mobile)}
+            </td>
+
+            <td>
+                ${escapeHTML(farmer.land)} Acre
+            </td>
+
+            <td>
+
+            <div class="action-buttons">
+
+            <button
+                class="warning"
+                onclick="editFarmer(${originalIndex})">
+                Edit
+            </button>
+
+            ${
+                currentProfile &&
+                currentProfile.role === "admin"
+                ?
+                `<button
+                    class="danger"
+                    onclick="deleteFarmer(${originalIndex})">
+                    Delete
+                </button>`
+                :
+                ""
+            }
+
+            </div>
+
+            </td>
+
+            </tr>
+
+            `;
+
+        }).join("");
+}
+
+
+/* =====================================================
+   FARMER SEARCH BUTTON
+===================================================== */
+
+function searchFarmers(){
+
+    displayFarmers();
+}
+
+
+/* =====================================================
+   CLEAR FARMER SEARCH
+===================================================== */
+
+function clearFarmerSearch(){
+
+    document.getElementById(
+        "farmerSearch"
+    ).value = "";
+
+    displayFarmers();
+}
+
+
+/* =====================================================
+   EDIT FARMER
+===================================================== */
+
+function editFarmer(index){
+
+    const farmer =
+        farmers[index];
+
+    if(!farmer){
+        return;
+    }
+
+
+    editingFarmerIndex = index;
+
+
+    document.getElementById(
+        "farmerFormTitle"
+    ).innerText =
+        "Edit Farmer";
+
+
+    document.getElementById(
+        "farmerName"
+    ).value =
+        farmer.name;
+
+
+    document.getElementById(
+        "village"
+    ).value =
+        farmer.village;
+
+
+    document.getElementById(
+        "mobile"
+    ).value =
+        farmer.mobile;
+
+
+    document.getElementById(
+        "land"
+    ).value =
+        farmer.land;
+
+
+    const preview =
+        document.getElementById(
+            "farmerPreview"
+        );
+
+
+    if(farmer.photo){
+
+        preview.src =
+            farmer.photo;
+
+        preview.style.display =
+            "block";
+
+    }else{
+
+        preview.style.display =
+            "none";
+    }
+
+
+    document.getElementById(
+        "farmerSubmitBtn"
+    ).innerText =
+        "Update Farmer";
+
+
+    document.getElementById(
+        "cancelFarmerBtn"
+    ).style.display =
+        "inline-block";
+
+
+    showSection("farmers");
+}
+
+
+/* =====================================================
+   CANCEL FARMER EDIT
+===================================================== */
+
+function cancelFarmerEdit(){
+
+    editingFarmerIndex = -1;
+
+
+    document.getElementById(
+        "farmerFormTitle"
+    ).innerText =
+        "Add Farmer";
+
+
+    document.getElementById(
+        "farmerName"
+    ).value = "";
+
+
+    document.getElementById(
+        "village"
+    ).value = "";
+
+
+    document.getElementById(
+        "mobile"
+    ).value = "";
+
+
+    document.getElementById(
+        "land"
+    ).value = "";
+
+
+    document.getElementById(
+        "farmerPhoto"
+    ).value = "";
+
+
+    document.getElementById(
+        "farmerPreview"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "farmerSubmitBtn"
+    ).innerText =
+        "Add Farmer";
+
+
+    document.getElementById(
+        "cancelFarmerBtn"
+    ).style.display =
+        "none";
+}
+
+
+/* =====================================================
+   DELETE FARMER
+===================================================== */
+
+function deleteFarmer(index){
+
+    if(
+        !confirm(
+            "Are you sure you want to delete this farmer?"
+        )
+    ){
+        return;
+    }
+
+
+    const farmer =
+        farmers[index];
+
+
+    farmers.splice(index,1);
+
+
+    crops =
+        crops.filter(
+            crop =>
+                crop.farmer !== farmer.name
+        );
+
+
+    profitRecords =
+        profitRecords.filter(
+            record =>
+                record.farmer !== farmer.name
+        );
+
+
+    saveData();
+
+    displayFarmers();
+
+    displayCrops();
+
+    displayProfitRecords();
+
+    updateFarmerDropdowns();
+
+    updateDashboard();
+}
+
+
+/* =====================================================
+   UPDATE FARMER DROPDOWNS
+===================================================== */
+
+function updateFarmerDropdowns(){
+
+    const cropFarmer =
+        document.getElementById(
+            "cropFarmer"
+        );
+
+    const profitFarmer =
+        document.getElementById(
+            "profitFarmer"
+        );
+
+
+    if(!cropFarmer || !profitFarmer){
+        return;
+    }
+
+
+    const visible =
+        getVisibleFarmers();
+
+
+    const options =
+        visible.map(
+            farmer =>
+                `<option value="${escapeHTML(farmer.name)}">
+                    ${escapeHTML(farmer.name)}
+                </option>`
+        ).join("");
+
+
+    cropFarmer.innerHTML =
+        options;
+
+
+    profitFarmer.innerHTML =
+        options;
+}
+
+
+/* =====================================================
+   SAVE CROP
+===================================================== */
+
+async function saveCrop(){
+
+    const farmer =
+        document.getElementById(
+            "cropFarmer"
+        ).value;
+
+    const name =
+        document.getElementById(
+            "cropName"
+        ).value.trim();
+
+    const date =
+        document.getElementById(
+            "cropDate"
+        ).value;
+
+    const production =
+        document.getElementById(
+            "production"
+        ).value;
+
+    const price =
+        document.getElementById(
+            "price"
+        ).value;
+
+
+    if(
+        !farmer ||
+        !name ||
+        !date ||
+        !production ||
+        !price
+    ){
+
+        alert(
+            "Please fill all crop details."
+        );
+
+        return;
+    }
+
+
+    let photo = "";
+
+
+    const photoInput =
+        document.getElementById(
+            "cropPhoto"
+        );
+
+
+    if(photoInput.files[0]){
+
+        photo =
+            await compressImage(
+                photoInput.files[0]
+            );
+    }
+
+
+    if(editingCropIndex === -1){
+
+        crops.push({
+
+            farmer:farmer,
+
+            name:name,
+
+            date:date,
+
+            production:production,
+
+            price:price,
+
+            photo:photo
+
+        });
+
+    }else{
+
+        const old =
+            crops[editingCropIndex];
+
+
+        crops[editingCropIndex] = {
+
+            farmer:farmer,
+
+            name:name,
+
+            date:date,
+
+            production:production,
+
+            price:price,
+
+            photo:
+                photo || old.photo || ""
+
+        };
+
+    }
+
+
+    saveData();
+
+    displayCrops();
+
+    updateDashboard();
+
+    cancelCropEdit();
+
+    alert("Crop saved successfully.");
+}
+
+
+/* =====================================================
+   DISPLAY CROPS
+===================================================== */
+
+function displayCrops(){
+
+    const table =
+        document.getElementById(
+            "cropTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "cropSearch"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    let visible =
+        getVisibleCrops();
+
+
+    if(search){
+
+        visible =
+            visible.filter(
+                crop =>
+                    crop.name
+                    .toLowerCase()
+                    .includes(search)
+                    ||
+                    crop.farmer
+                    .toLowerCase()
+                    .includes(search)
+            );
+    }
+
+
+    if(visible.length === 0){
+
+        table.innerHTML =
+            `<tr>
+                <td colspan="7">
+                    No crop found
+                </td>
+            </tr>`;
+
+        return;
+    }
+
+
+    table.innerHTML =
+        visible.map(crop=>{
+
+            const originalIndex =
+                crops.indexOf(crop);
+
+
+            return `
+
+            <tr>
+
+            <td>
+
+            ${
+                crop.photo
+                ?
+                `<img
+                src="${crop.photo}"
+                class="photo">`
+                :
+                "No Photo"
+            }
+
+            </td>
+
+            <td>
+                ${escapeHTML(crop.farmer)}
+            </td>
+
+            <td>
+                ${escapeHTML(crop.name)}
+            </td>
+
+            <td>
+                ${escapeHTML(crop.date)}
+            </td>
+
+            <td>
+                ${escapeHTML(crop.production)} KG
+            </td>
+
+            <td>
+                ₹${escapeHTML(crop.price)}
+            </td>
+
+            <td>
+
+            <div class="action-buttons">
+
+            <button
+                class="warning"
+                onclick="editCrop(${originalIndex})">
+                Edit
+            </button>
+
+            <button
+                class="danger"
+                onclick="deleteCrop(${originalIndex})">
+                Delete
+            </button>
+
+            </div>
+
+            </td>
+
+            </tr>
+
+            `;
+
+        }).join("");
+}
+
+
+/* =====================================================
+   EDIT CROP
+===================================================== */
+
+function editCrop(index){
+
+    const crop =
+        crops[index];
+
+    if(!crop){
+        return;
+    }
+
+
+    editingCropIndex =
+        index;
+
+
+    document.getElementById(
+        "cropFormTitle"
+    ).innerText =
+        "Edit Crop";
+
+
+    document.getElementById(
+        "cropFarmer"
+    ).value =
+        crop.farmer;
+
+
+    document.getElementById(
+        "cropName"
+    ).value =
+        crop.name;
+
+
+    document.getElementById(
+        "cropDate"
+    ).value =
+        crop.date;
+
+
+    document.getElementById(
+        "production"
+    ).value =
+        crop.production;
+
+
+    document.getElementById(
+        "price"
+    ).value =
+        crop.price;
+
+
+    const preview =
+        document.getElementById(
+            "cropPreview"
+        );
+
+
+    if(crop.photo){
+
+        preview.src =
+            crop.photo;
+
+        preview.style.display =
+            "block";
+
+    }else{
+
+        preview.style.display =
+            "none";
+    }
+
+
+    document.getElementById(
+        "cropSubmitBtn"
+    ).innerText =
+        "Update Crop";
+
+
+    document.getElementById(
+        "cancelEditBtn"
+    ).style.display =
+        "inline-block";
+
+
+    showSection("crops");
+}
+
+
+/* =====================================================
+   CANCEL CROP EDIT
+===================================================== */
+
+function cancelCropEdit(){
+
+    editingCropIndex = -1;
+
+
+    document.getElementById(
+        "cropFormTitle"
+    ).innerText =
+        "Add Crop";
+
+
+    document.getElementById(
+        "cropName"
+    ).value = "";
+
+
+    document.getElementById(
+        "cropDate"
+    ).value = "";
+
+
+    document.getElementById(
+        "production"
+    ).value = "";
+
+
+    document.getElementById(
+        "price"
+    ).value = "";
+
+
+    document.getElementById(
+        "cropPhoto"
+    ).value = "";
+
+
+    document.getElementById(
+        "cropPreview"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "cropSubmitBtn"
+    ).innerText =
+        "Add Crop";
+
+
+    document.getElementById(
+        "cancelEditBtn"
+    ).style.display =
+        "none";
+}
+
+
+/* =====================================================
+   DELETE CROP
+===================================================== */
+
+function deleteCrop(index){
+
+    if(
+        !confirm(
+            "Are you sure you want to delete this crop?"
+        )
+    ){
+        return;
+    }
+
+
+    crops.splice(index,1);
+
+    saveData();
+
+    displayCrops();
+
+    updateDashboard();
+}
+
+
+/* =====================================================
+   CALCULATE PROFIT
+===================================================== */
+
+function calculateProfit(){
+
+    const farmer =
+        document.getElementById(
+            "profitFarmer"
+        ).value;
+
+
+    const income =
+        Number(
+            document.getElementById(
+                "income"
+            ).value
+        ) || 0;
+
+
+    const seed =
+        Number(
+            document.getElementById(
+                "seed"
+            ).value
+        ) || 0;
+
+
+    const fertilizer =
+        Number(
+            document.getElementById(
+                "fertilizer"
+            ).value
+        ) || 0;
+
+
+    const medicine =
+        Number(
+            document.getElementById(
+                "medicine"
+            ).value
+        ) || 0;
+
+
+    const labour =
+        Number(
+            document.getElementById(
+                "labour"
+            ).value
+        ) || 0;
+
+
+    const expense =
+        seed +
+        fertilizer +
+        medicine +
+        labour;
+
+
+    const profit =
+        income - expense;
+
+
+    profitRecords.push({
+
+        farmer:farmer,
+
+        income:income,
+
+        expense:expense,
+
+        profit:profit
+
+    });
+
+
+    saveData();
+
+    displayProfitRecords();
+
+    updateDashboard();
+
+
+    const result =
+        document.getElementById(
+            "profitResult"
+        );
+
+
+    result.innerText =
+        `Income: ₹${income} | Expense: ₹${expense} | Profit: ₹${profit}`;
+
+
+    result.style.display =
+        "block";
+
+
+    document.getElementById(
+        "income"
+    ).value = "";
+
+    document.getElementById(
+        "seed"
+    ).value = "";
+
+    document.getElementById(
+        "fertilizer"
+    ).value = "";
+
+    document.getElementById(
+        "medicine"
+    ).value = "";
+
+    document.getElementById(
+        "labour"
+    ).value = "";
+}
+
+
+/* =====================================================
+   DISPLAY PROFIT RECORDS
+===================================================== */
+
+function displayProfitRecords(){
+
+    const table =
+        document.getElementById(
+            "profitTable"
+        );
+
+
+    let visible =
+        profitRecords;
+
+
+    if(
+        currentProfile &&
+        currentProfile.role === "farmer"
+    ){
+
+        const farmerName =
+            currentProfile.full_name || "";
+
+
+        visible =
+            profitRecords.filter(
+                record =>
+                    record.farmer
+                    .toLowerCase() ===
+                    farmerName.toLowerCase()
+            );
+    }
+
+
+    if(visible.length === 0){
+
+        table.innerHTML =
+            `<tr>
+                <td colspan="4">
+                    No profit records
+                </td>
+            </tr>`;
+
+        return;
+    }
+
+
+    table.innerHTML =
+        visible.map(record=>{
+
+            return `
+
+            <tr>
+
+            <td>
+                ${escapeHTML(record.farmer)}
+            </td>
+
+            <td>
+                ₹${Number(record.income).toFixed(2)}
+            </td>
+
+            <td>
+                ₹${Number(record.expense).toFixed(2)}
+            </td>
+
+            <td>
+                ₹${Number(record.profit).toFixed(2)}
+            </td>
+
+            </tr>
+
+            `;
+
+        }).join("");
+}
+
+
+/* =====================================================
+   UPDATE DASHBOARD
+===================================================== */
+
+function updateDashboard(){
+
+    const visibleFarmers =
+        getVisibleFarmers();
+
+    const visibleCrops =
+        getVisibleCrops();
+
+
+    let visibleProfit =
+        profitRecords;
+
+
+    if(
+        currentProfile &&
+        currentProfile.role === "farmer"
+    ){
+
+        const name =
+            currentProfile.full_name || "";
+
+
+        visibleProfit =
+            profitRecords.filter(
+                record =>
+                    record.farmer
+                    .toLowerCase() ===
+                    name.toLowerCase()
+            );
+    }
+
+
+    const totalExpense =
+        visibleProfit.reduce(
+            (sum,record)=>
+                sum + Number(record.expense || 0),
+            0
+        );
+
+
+    const totalProfit =
+        visibleProfit.reduce(
+            (sum,record)=>
+                sum + Number(record.profit || 0),
+            0
+        );
+
+
+    document.getElementById(
+        "totalFarmers"
+    ).innerText =
+        visibleFarmers.length;
+
+
+    document.getElementById(
+        "totalCrops"
+    ).innerText =
+        visibleCrops.length;
+
+
+    document.getElementById(
+        "totalExpense"
+    ).innerText =
+        "₹" +
+        totalExpense.toFixed(2);
+
+
+    document.getElementById(
+        "totalProfit"
+    ).innerText =
+        "₹" +
+        totalProfit.toFixed(2);
+
+
+    updateProfitReport();
+}
+
+
+/* =====================================================
+   PROFIT REPORT
+===================================================== */
+
+function updateProfitReport(){
+
+    const table =
+        document.getElementById(
+            "profitReportTable"
+        );
+
+
+    let visible =
+        profitRecords;
+
+
+    if(
+        currentProfile &&
+        currentProfile.role === "farmer"
+    ){
+
+        const name =
+            currentProfile.full_name || "";
+
+
+        visible =
+            profitRecords.filter(
+                record =>
+                    record.farmer
+                    .toLowerCase() ===
+                    name.toLowerCase()
+            );
+    }
+
+
+    const grouped = {};
+
+
+    visible.forEach(record=>{
+
+        if(!grouped[record.farmer]){
+
+            grouped[record.farmer] = {
+
+                income:0,
+
+                expense:0,
+
+                profit:0
+            };
+        }
+
+
+        grouped[record.farmer].income
+            += Number(record.income || 0);
+
+
+        grouped[record.farmer].expense
+            += Number(record.expense || 0);
+
+
+        grouped[record.farmer].profit
+            += Number(record.profit || 0);
+
+    });
+
+
+    const names =
+        Object.keys(grouped);
+
+
+    if(names.length === 0){
+
+        table.innerHTML =
+            `<tr>
+                <td colspan="4">
+                    No records
+                </td>
+            </tr>`;
+
+        return;
+    }
+
+
+    table.innerHTML =
+        names.map(name=>{
+
+            const r =
+                grouped[name];
+
+
+            return `
+
+            <tr>
+
+            <td>
+                ${escapeHTML(name)}
+            </td>
+
+            <td>
+                ₹${r.income.toFixed(2)}
+            </td>
+
+            <td>
+                ₹${r.expense.toFixed(2)}
+            </td>
+
+            <td>
+                ₹${r.profit.toFixed(2)}
+            </td>
+
+            </tr>
+
+            `;
+
+        }).join("");
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+function addNotification(){
+
+    const text =
+        document.getElementById(
+            "notificationText"
+        ).value.trim();
+
+
+    if(!text){
+
+        alert(
+            "Please enter notification."
+        );
+
+        return;
+    }
+
+
+    notifications.unshift({
+
+        message:text,
+
+        time:new Date().toLocaleString()
+
+    });
+
+
+    saveData();
+
+    displayNotifications();
+
+
+    document.getElementById(
+        "notificationText"
+    ).value = "";
+}
+
+
+/* =====================================================
+   DISPLAY NOTIFICATIONS
+===================================================== */
+
+function displayNotifications(){
+
+    const table =
+        document.getElementById(
+            "notificationTable"
+        );
+
+
+    if(notifications.length === 0){
+
+        table.innerHTML =
+            `<tr>
+                <td colspan="2">
+                    No notifications
+                </td>
+            </tr>`;
+
+        return;
+    }
+
+
+    table.innerHTML =
+        notifications.map(item=>{
+
+            return `
+
+            <tr>
+
+            <td>
+                ${escapeHTML(item.message)}
+            </td>
+
+            <td>
+                ${escapeHTML(item.time)}
+            </td>
+
+            </tr>
+
+            `;
+
+        }).join("");
+}
+
+
+/* =====================================================
+   CSV DOWNLOAD
+===================================================== */
+
+function downloadCSV(filename,rows){
+
+    if(!rows.length){
+
+        alert("No data available.");
+
+        return;
+    }
+
+
+    const csv =
+        rows.map(row=>
+            row.map(value=>{
+
+                const text =
+                    String(value ?? "")
+                    .replace(/"/g,'""');
+
+                return `"${text}"`;
+
+            }).join(",")
+        ).join("\n");
+
+
+    const blob =
+        new Blob(
+            [csv],
+            {
+                type:"text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const a =
+        document.createElement("a");
+
+
+    a.href = url;
+
+    a.download = filename;
+
+    a.click();
+
+
+    URL.revokeObjectURL(url);
+}
+
+
+/* =====================================================
+   FARMER REPORT
+===================================================== */
+
+function downloadFarmerReport(){
+
+    const visible =
+        getVisibleFarmers();
+
+
+    const rows = [
+
+        [
+            "Name",
+            "Village",
+            "Mobile",
+            "Land Area"
+        ]
+
+    ];
+
+
+    visible.forEach(farmer=>{
+
+        rows.push([
+
+            farmer.name,
+
+            farmer.village,
+
+            farmer.mobile,
+
+            farmer.land
+
+        ]);
+
+    });
+
+
+    downloadCSV(
+        "Farmer_Report.csv",
+        rows
+    );
+}
+
+
+/* =====================================================
+   CROP REPORT
+===================================================== */
+
+function downloadCropReport(){
+
+    const visible =
+        getVisibleCrops();
+
+
+    const rows = [
+
+        [
+            "Farmer",
+            "Crop",
+            "Date",
+            "Production",
+            "Price"
+        ]
+
+    ];
+
+
+    visible.forEach(crop=>{
+
+        rows.push([
+
+            crop.farmer,
+
+            crop.name,
+
+            crop.date,
+
+            crop.production,
+
+            crop.price
+
+        ]);
+
+    });
+
+
+    downloadCSV(
+        "Crop_Report.csv",
+        rows
+    );
+}
+
+
+/* =====================================================
+   PROFIT REPORT
+===================================================== */
+
+function downloadProfitReport(){
+
+    let visible =
+        profitRecords;
+
+
+    if(
+        currentProfile &&
+        currentProfile.role === "farmer"
+    ){
+
+        const name =
+            currentProfile.full_name || "";
+
+
+        visible =
+            profitRecords.filter(
+                record =>
+                    record.farmer
+                    .toLowerCase() ===
+                    name.toLowerCase()
+            );
+    }
+
+
+    const rows = [
+
+        [
+            "Farmer",
+            "Income",
+            "Expense",
+            "Profit"
+        ]
+
+    ];
+
+
+    visible.forEach(record=>{
+
+        rows.push([
+
+            record.farmer,
+
+            record.income,
+
+            record.expense,
+
+            record.profit
+
+        ]);
+
+    });
+
+
+    downloadCSV(
+        "Profit_Report.csv",
+        rows
+    );
+}
+
+
+/* =====================================================
+   ALL REPORTS
+===================================================== */
+
+function downloadAllReports(){
+
+    downloadFarmerReport();
+
+    setTimeout(
+        downloadCropReport,
+        500
+    );
+
+    setTimeout(
+        downloadProfitReport,
+        1000
+    );
+}
+
+
+/* =====================================================
+   PRINT REPORT
+===================================================== */
+
+function printReport(){
+
+    window.print();
+}
+
+
+/* =====================================================
+   RESET PROFIT DATA
+===================================================== */
+
+function resetProfitData(){
+
+    if(
+        !confirm(
+            "Reset all profit data?"
+        )
+    ){
+
+        return;
+    }
+
+
+    profitRecords = [];
+
+    saveData();
+
+    displayProfitRecords();
+
+    updateDashboard();
+
+    alert(
+        "Profit data reset successfully."
+    );
+}
 
 
 /* =====================================================
